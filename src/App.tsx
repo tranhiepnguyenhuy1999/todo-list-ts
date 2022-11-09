@@ -1,18 +1,20 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
-interface headerData {
+interface headerInterface {
   children: string;
+  title?: string;
 }
 
-function Header({ children }: headerData) {
+function Header({ title = "", children }: headerInterface) {
   return (
     <header className="header">
+      {title && <h1>{title}</h1>}
       <h1>{children}</h1>
     </header>
   );
 }
 function ListToDo({
-  data,
+  data = [],
   setData
 }: {
   data: string[];
@@ -37,7 +39,7 @@ function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <div>
-      <Header>Todo List</Header>
+      <Header title="This is Huy's">Todo List</Header>
       <section className="main">
         <div style={{ display: "flex", width: "100%" }}>
           <input
